@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>counter</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+    }
+    #counter {
+      display: inline-flex;
+      border: 3px solid #07C6DD;
+      border-radius: 20px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, .18);
+      background-color: #07C6DD;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    button {
+      border: 0;
+      background-color: transparent;
+      color: #fff;
+      font-size: 24px;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      margin: 0;
+      outline: none;
+      display: inline-block;
+    }
+
+    input[type='text'] {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      background-color: #ffffff;
+      border: 0;
+      border-radius: 2px;
+      height: 32px;
+      width: 60px;
+      font-size: 22px;
+      text-align: center;
+
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+  </style>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.min.js"></script>
+</head>
+<body>
+  <div id="counter">
+    <button @click="subtract">-</button>
+    <input type="text" v-model="count">
+    <button @click="add">+</button>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: '#counter',
+      data: {
+        count: 14
+      },
+      methods: {
+        subtract() {
+          this.count--
+        },
+        add() {
+          this.count++
+        }
+      }
+    })
+  </script>
+</body>
+</html>

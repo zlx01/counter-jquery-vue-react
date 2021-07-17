@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>counter</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .counter {
+      display: inline-flex;
+      border: 3px solid #07C6DD;
+      border-radius: 20px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, .18);
+      background-color: #07C6DD;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    button {
+      border: 0;
+      background-color: transparent;
+      color: #fff;
+      font-size: 24px;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      margin: 0;
+      outline: none;
+      display: inline-block;
+    }
+
+    input[type='text'] {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      background-color: #ffffff;
+      border: 0;
+      border-radius: 2px;
+      height: 32px;
+      width: 60px;
+      font-size: 22px;
+      text-align: center;
+
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+  </style>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/react/17.0.1/umd/react.development.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.1/umd/react-dom.development.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.js"></script>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+  <div id="cpp">
+
+  </div>
+
+  <script type="text/babel">
+    const App = (props) => {
+      const [count, setCount] = React.useState(35)
+      const add = () => {
+        setCount(count + 1)
+      }
+      const subtract = () => {
+        setCount(count - 1)
+      }
+
+      const inputCount = (e) => {
+        const val = parseInt(e.target.value)
+        if (!isNaN(val)) {
+          setCount(val)
+        }
+      }
+      return (
+          <div className="counter">
+              <button onClick={subtract}>-</button>
+              <input type="text" value={count} onChange={inputCount}/>
+              <button onClick={add}>+</button>
+          </div>
+      )
+    }
+
+    ReactDOM.render(<App/>, document.getElementById('app'))
+  </script>
+  <script type="text/babel">
+    class Cpp extends React.Component {
+      state = {
+        count: 23
+      }
+
+      add = () => {
+        this.setState({
+          count: this.state.count + 1
+        })
+      }
+
+      subtract = () => {
+        this.setState({
+          count: this.state.count - 1
+        })
+      }
+
+      inputCount = (e) => {
+        const val = parseInt(e.target.value)
+        if (!isNaN(val)) {
+          this.setState({
+            count: val
+          })
+        }
+      }
+
+      render() {
+        return (
+            <div className="counter">
+              <button onClick={this.subtract}>-</button>
+              <input type="text" value={this.state.count} onChange={this.inputCount}/>
+              <button onClick={this.add}>+</button>
+            </div>
+        )
+      }
+    }
+    ReactDOM.render(<Cpp/>, document.getElementById('cpp'))
+  </script>
+</body>
+</html>
